@@ -18,7 +18,6 @@ const app = express();
 
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
-
 app.post('/callback', line.middleware(config), (req, res) => {
   Promise
     .all(req.body.events.map(handleEvent))
@@ -31,20 +30,16 @@ app.post('/callback', line.middleware(config), (req, res) => {
 
 // event handler
 function handleEvent(event) {
-   if(event.massage.type == 'text' || event.message.text == 'hello'){
-   const echo = {
-      type: "text",
-      text: "tiikittinan"
-    };
-    return client.replyMessage(event.replyToken, payload);
-  
+  if (event.type !== 'message' || event.message.type !== 'text') {
+    // ignore non-text-message event
+    return Promise.resolve(null);
+  }
 
   // create a echoing text message
-  //const echo = { type: 'text', text: event.message.text };
+  const echo = { type: 'text', text: event.message.text };
 
   // use reply API
-  //return client.replyMessage(event.replyToken, echo);
-}
+  return client.replyMessage(event.replyToken, echo);
 }
 
 // listen on port

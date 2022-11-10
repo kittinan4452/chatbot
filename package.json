@@ -1,13 +1,22 @@
 {
-  "name": "echo-bot",
-  "version": "0.0.0",
-  "description": "An example LINE bot just to echo messages",
+  "name": "chatbot_lib",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ."
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
   },
+  "author": "Treepaech Treechan",
+  "license": "ISC",
   "dependencies": {
-    "@line/bot-sdk": "^7.3.0",
-    "express": "^4.16.3"
+    "@google-cloud/local-auth": "^2.1.0",
+    "dialogflow-fulfillment": "^0.6.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "googleapis": "^105.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
